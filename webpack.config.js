@@ -19,7 +19,10 @@ module.exports = {
       }
     ],
     preLoaders: [
-      { test: /\.js$/, loader: "source-map-loader" }
+      { test: /\.js$/,
+         loader: "source-map-loader" ,
+         exclude: /node_modules/,
+      }
     ]
   }
 };
