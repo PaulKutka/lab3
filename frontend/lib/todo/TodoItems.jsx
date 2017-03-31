@@ -1,23 +1,21 @@
 import React from 'react';
-import todo from '/home/paulius/Projects/lab3/frontend/lib/todo/TodoItem.jsx'
-import service from './todoInfraService'
+import TodoItem from './TodoItem'
+
 class TodoItems extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      todos: null
-    }
   }
 
   render() {
-    if (this.state.todos) {
+
+    if (this.props.todos) {
 
       return (
         <div>
           <ul>
-            {this.state.todos.map(todo => {
-              return <li key={todo.id}> <todo address={todo} /> </li>
+            {this.props.todos.map(todo => {
+              return <li key={todo.id}> <TodoItem todo={todo} /> </li>
             })}
           </ul>
         </div>
@@ -31,14 +29,7 @@ class TodoItems extends React.Component {
     }
   }
 
-  componentDidMount() {
-    service.getTodoElements((todos) => {
-      this.setState({  
-        todos: todos
-      })
-    });
 
-  }
 }
 
 export default TodoItems;

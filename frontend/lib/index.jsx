@@ -1,11 +1,11 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ToDoItems from './todo/TodoItems.jsx';
+import TodoApp from './todo/TodoApp.jsx';
 
 
 ReactDOM.render(
-<ToDoItems/>,
+<TodoApp/>,
  document.getElementById('app')
 );
 
