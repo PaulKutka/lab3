@@ -5,6 +5,7 @@ class TodoItems extends React.Component {
 
   constructor(props) {
     super(props);
+
   }
 
   render() {
@@ -15,7 +16,9 @@ class TodoItems extends React.Component {
         <div>
           <ul>
             {this.props.todos.map(todo => {
-              return <li key={todo.id}> <TodoItem todo={todo} /> </li>
+              return <li key={todo.id}> <TodoItem todo={todo} handler = {this.props.handler}/>
+              
+               </li>
             })}
           </ul>
         </div>

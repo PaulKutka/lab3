@@ -14,7 +14,7 @@ class TodoItemForm extends React.Component {
 
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-        this.handleIsDoneChange = this.handleIsDoneChange.bind(this);
+        // this.handleIsDoneChange = this.handleIsDoneChange.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
         
@@ -29,9 +29,9 @@ class TodoItemForm extends React.Component {
         this.setState({ description: event.target.value });
     }
 
-    handleIsDoneChange(event) {
-        this.setState({ isDone: event.target.value });
-    }
+    // handleIsDoneChange(event) {
+    //     this.setState({ isDone: event.target.value });
+    // }
 
 
     handleSubmit(event) {
@@ -40,13 +40,19 @@ class TodoItemForm extends React.Component {
            description: this.state.description
        }
        service.postTodoElemet((todo) => {
-          //console.log(todo);
+        if(todo) {
+            this.props.handler();
+            this.setState({ title: "" });
+            this.setState({ description: "" });
+        }
        }, form)
+
+      
     }
 
     render() {
 
-        const isUpdating = this.state.isUpdating;
+        /*const isUpdating = this.state.isUpdating;
 
         let setDone = null;
         if (isUpdating) {
@@ -54,24 +60,22 @@ class TodoItemForm extends React.Component {
                 Set done:
                         <input type="text" name="isDone" onChange={this.handleIsDoneChange}/>
             </label>
-        }
+        }*/
 
         return (
             <div>
                 <form>
                     <label>
                         Title:
-                        <input type="text" name="title" onChange={this.handleTitleChange} />
+                        <input type="text" name="title" value={this.state.title} onChange = {this.handleTitleChange}/>
                     </label>
                     <label>
                         Description:
-                        <input type="text" name="description" onChange={this.handleDescriptionChange}/>
+                        <input type="text" name="description" value={this.state.description} onChange = {this.handleDescriptionChange}/>
                     </label>
 
 
-                    {setDone}
-
-                    <button type="button" value="Submit" onClick={this.handleSubmit} />
+                    <button type="button" value="Submit" onClick = {this.handleSubmit}>Submit</button>
                 </form>
             </div>
         )

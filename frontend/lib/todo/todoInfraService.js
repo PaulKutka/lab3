@@ -1,7 +1,7 @@
 require('isomorphic-fetch');
 
 
-let url = "http://localhost:3000/api/todo"
+let url = "http://localhost:3000/api/todo/"
 
 function getTodoElements(cb) {
     fetch(url).then((response) => {
@@ -20,7 +20,13 @@ function getTodoElements(cb) {
 function postTodoElemet(cb, form) {
     fetch(url, {
         method: 'post',
-        body: form
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+        body: JSON.stringify(
+       form
+      )
     }
     ).then((response) => {
     if (response.status >= 400) {
@@ -34,5 +40,46 @@ function postTodoElemet(cb, form) {
 
 }
 
+function updateTodoElement(cb, form, id) {
+    fetch(url + id, {
+        method: 'put',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+        body: JSON.stringify(
+       form
+      )
+    }
+    ).then((response) => {
+    if (response.status >= 400) {
+			throw new Error("Bad response from server");
+		}
+		return response.json();
+})
+.then((todo) => {
+   return cb(todo);
+});
 
-module.exports = {getTodoElements, postTodoElemet};
+}
+
+function deleteTodoElement(cb, id) {
+    
+    fetch(url + id, {
+        method: 'delete',
+    }
+    ).then((response) => {
+    if (response.status >= 400) {
+			throw new Error("Bad response from server");
+		}       
+
+
+		return cb(response.json());
+});
+
+}
+
+
+
+
+module.exports = {getTodoElements, postTodoElemet, updateTodoElement, deleteTodoElement};

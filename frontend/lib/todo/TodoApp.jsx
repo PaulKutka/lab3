@@ -10,12 +10,22 @@ class TodoApp extends React.Component {
      this.state = {
       todos: null
     }
+
+    this.handler = this.handler.bind(this)
+  }
+
+    handler() {
+      service.getTodoElements((todos) => {
+      this.setState({  
+        todos: todos
+      })
+    });
   }
 
   render() {
     return <div>
-        <TodoItems todos={this.state.todos}/>
-        <TodoItemForm/>
+        <TodoItems todos={this.state.todos} handler = {this.handler}/>
+        <TodoItemForm handler = {this.handler} />
         </div>
   }
 
