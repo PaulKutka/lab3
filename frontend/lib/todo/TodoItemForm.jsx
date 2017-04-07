@@ -1,6 +1,10 @@
 import React from 'react';
 import service from './todoInfraService'
 
+import RaisedButton from 'material-ui/RaisedButton';
+
+import TextField from 'material-ui/TextField';
+
 class TodoItemForm extends React.Component {
 
     constructor(props) {
@@ -65,17 +69,32 @@ class TodoItemForm extends React.Component {
         return (
             <div>
                 <form>
-                    <label>
+                      <TextField
+      hintText="Title"
+      onChange={this.handleTitleChange}
+      type="input"
+      name="title"
+      value={this.state.title}
+    />
+                    {/*<label>
                         Title:
                         <input type="text" name="title" value={this.state.title} onChange = {this.handleTitleChange}/>
-                    </label>
-                    <label>
+                    </label>*/}
+                   <TextField
+      hintText="Description"
+      onChange={this.handleDescriptionChange}
+      type="input"
+      name="description"
+      value={this.state.description}
+    />              
+                    {/*<label>
                         Description:
                         <input type="text" name="description" value={this.state.description} onChange = {this.handleDescriptionChange}/>
-                    </label>
+                    </label>*/}
 
 
-                    <button type="button" value="Submit" onClick = {this.handleSubmit}>Submit</button>
+                         <RaisedButton label="Submit" type="button" value="Submit" onClick = {this.handleSubmit}/>  
+                
                 </form>
             </div>
         )
