@@ -39,13 +39,13 @@ class TodoItemForm extends React.Component {
            title: this.state.title,
            description: this.state.description
        }
-       service.postTodoElemet((todo) => {
+       service.postTodoElemet(form, (todo) => {
         if(todo) {
             this.props.handler();
             this.setState({ title: "" });
             this.setState({ description: "" });
         }
-       }, form)
+       })
 
       
     }

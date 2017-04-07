@@ -17,7 +17,7 @@ function getTodoElements(cb) {
     
 }
 
-function postTodoElemet(cb, form) {
+function postTodoElemet(form, cb) {
     fetch(url, {
         method: 'post',
         headers: {
@@ -40,7 +40,7 @@ function postTodoElemet(cb, form) {
 
 }
 
-function updateTodoElement(cb, form, id) {
+function updateTodoElement(form, id, cb) {
     fetch(url + id, {
         method: 'put',
         headers: {
@@ -63,16 +63,19 @@ function updateTodoElement(cb, form, id) {
 
 }
 
-function deleteTodoElement(cb, id) {
-    
+function deleteTodoElement(id, cb) {
+     
     fetch(url + id, {
         method: 'delete',
     }
     ).then((response) => {
+
+     
     if (response.status >= 400) {
 			throw new Error("Bad response from server");
 		}       
 
+        
 
 		return cb(response.json());
 });

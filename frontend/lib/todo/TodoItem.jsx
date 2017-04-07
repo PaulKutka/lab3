@@ -17,17 +17,17 @@ class TodoItem extends React.Component {
       description: this.props.todo.description,
       isDone: event.target.value
     }
-    service.updateTodoElement((todo) => {
+    service.updateTodoElement(form, this.props.todo.id, (todo) => {
         this.props.handler();
-    }, form, this.props.todo.id);
+    });
 
 
   }
 
    handleDelete(event){
-    service.deleteTodoElement((response) => {
+    service.deleteTodoElement(this.props.todo.id, (response) => {
         this.props.handler();
-    }, this.props.todo.id);
+    });
 
 
   }
