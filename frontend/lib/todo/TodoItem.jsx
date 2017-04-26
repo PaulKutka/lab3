@@ -17,7 +17,7 @@ class TodoItem extends React.Component {
       description: this.props.todo.description,
       isDone: event.target.value
     }
-    service.updateTodoElement(form, this.props.todo.id, (todo) => {
+    service.updateTodoElement(form, this.props.todo._id, (todo) => {
         this.props.handler();
     });
 
@@ -25,7 +25,7 @@ class TodoItem extends React.Component {
   }
 
    handleDelete(event){
-    service.deleteTodoElement(this.props.todo.id, (response) => {
+    service.deleteTodoElement(this.props.todo._id, (response) => {
         this.props.handler();
     });
 
@@ -35,7 +35,8 @@ class TodoItem extends React.Component {
   render() {
 
   let isDone = "Not Done";
-   if (this.props.todo.isDone === "true") {
+  
+   if (this.props.todo.isDone === true) {
      isDone = "Is done";
    }
 

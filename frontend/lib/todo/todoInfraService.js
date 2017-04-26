@@ -66,7 +66,6 @@ function updateTodoElement(form, id, cb) {
 }
 
 function deleteTodoElement(id, cb) {
-
     fetch(url + id, {
         method: 'delete',
     }
