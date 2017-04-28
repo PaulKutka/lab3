@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-
+import dateformat from 'dateformat';
 
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 
@@ -35,6 +35,7 @@ class TodoItem extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+     this.renderDate = this.renderDate.bind(this);
   }
 
   handleChange(event, index, value) {
@@ -55,9 +56,16 @@ class TodoItem extends React.Component {
       this.props.handler();
     });
 
+ 
+
 
   }
 
+
+  renderDate(date) {
+    let dateFormat = require('dateformat');
+   return dateformat(date, "dddd, mmmm dS, yyyy, h:MM:ss TT");
+    }
   render() {
 
     let isDone = "Not Done";
@@ -73,8 +81,8 @@ class TodoItem extends React.Component {
         <TableRowColumn>{this.props.todo.title}</TableRowColumn>
         <TableRowColumn>{this.props.todo.description}</TableRowColumn>
         <TableRowColumn>{isDone}</TableRowColumn>
-        <TableRowColumn>{this.props.todo.creationDate} </TableRowColumn>
-        <TableRowColumn>{this.props.todo.updateDate}</TableRowColumn>
+        <TableRowColumn>{this.renderDate(this.props.todo.creationDate)} </TableRowColumn>
+        <TableRowColumn>{this.renderDate(this.props.todo.updateDate)}</TableRowColumn>
 
 
         <TableRowColumn>
